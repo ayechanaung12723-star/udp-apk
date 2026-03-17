@@ -1,15 +1,19 @@
 name: Build APK
 on: [push]
+
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - name: Build with Buildozer
-        uses: ArtemGrubin/Buildozer-action@v1.2
+        uses: digreatbrian/buildozer-action@v2
         with:
           buildozer_version: master
           command: buildozer android debug
+          repository_display_name: UDP-Test
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
